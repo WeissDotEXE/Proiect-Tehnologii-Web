@@ -16,19 +16,19 @@ let sql;
 // db.run("drop table students");
 
 //insert data into table
-sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
-db.run(sql, ["mike", "michaelSOn", "pass", "email@gmail.com"], (err) => {
-  if (err) return console.error(err.message);
-});
+// sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
+// db.run(sql, ["mike", "michaelSOn", "pass", "email@gmail.com"], (err) => {
+//   if (err) return console.error(err.message);
+// });
 
 //query the database
-sql = `Select * from students`;
-db.all(sql, [], (err, rows) => {
-  if (err) return console.error(err.message);
-  rows.forEach((row) => {
-    console.log(row);
-  });
-});
+// sql = `Select * from students`;
+// db.all(sql, [], (err, rows) => {
+//   if (err) return console.error(err.message);
+//   rows.forEach((row) => {
+//     console.log(row);
+//   });
+// });
 
 const app = express();
 app.use(express.json());
