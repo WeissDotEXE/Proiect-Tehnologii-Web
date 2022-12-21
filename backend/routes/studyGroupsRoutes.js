@@ -16,3 +16,5 @@ router
   .get(getStudyGroup)
   .patch(updateStudyGroup)
   .delete(deleteStudyGroup);
+
+export default router;

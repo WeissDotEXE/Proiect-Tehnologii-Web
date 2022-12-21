@@ -6,4 +6,12 @@ const registerUser = (req, res) => {
     },
   });
 };
-export { registerUser };
+const loginUser = (req, res) => {
+  res.status(201).json({
+    status: "succes",
+    data: {
+      stats,
+    },
+  });
+};
+export { loginUser, registerUser };
