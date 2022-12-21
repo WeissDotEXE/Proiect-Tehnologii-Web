@@ -1,5 +1,5 @@
 import express from "express";
-import studyGroupRouter from "./routes/studyGroupsRouter";
+import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import sqlite3 from "sqlite3";
 
 //connect to db
