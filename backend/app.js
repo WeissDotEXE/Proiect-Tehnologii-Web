@@ -1,5 +1,6 @@
 import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
+import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
 
 //connect to db
@@ -34,5 +35,6 @@ app.use(express.json());
 
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
+app.use("/api/v1/auth", authRouter);
 
 export default app;

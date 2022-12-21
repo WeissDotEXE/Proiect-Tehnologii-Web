@@ -1,17 +1,11 @@
 const registerUser = (req, res) => {
   res.status(201).json({
-    status: "succes",
-    data: {
-      stats,
-    },
+    status: "succes register",
   });
 };
 const loginUser = (req, res) => {
   res.status(201).json({
-    status: "succes",
-    data: {
-      stats,
-    },
+    status: "succes login",
   });
 };
 export { loginUser, registerUser };
