@@ -10,7 +10,9 @@ const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
 let sql;
 
 //create table
-// sql = `create table students(id integer primary key,first_name,last_name,password,email)`;
+//!!!run once (we don't need to create multiple tables with same data)!!!
+
+// sql = `create table studygroups(id integer primary key,first_name,last_name,password,email)`;
 // db.run(sql);
 //drop table
 // db.run("drop table students");
