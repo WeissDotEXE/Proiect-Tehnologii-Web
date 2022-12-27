@@ -1,8 +1,5 @@
 # Proiect-Tehnologii-Web
 
-<<<<<<< HEAD
-# Test edi
-=======
 Pasi pentru a incarca modificarile pe branch-ul vostru
 
 1. git add .
@@ -33,4 +30,3 @@ Notitele vor putea fi clasificate in functie de materie, data sau tag-uri. De as
 # Instructiuni pentru a rula partea de frontend
 
 1. `npm start` in folderul curent
->>>>>>> b0e2a5e3713bb20655daea96363e6aca96fc5a56

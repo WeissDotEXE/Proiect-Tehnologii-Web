@@ -8,6 +8,8 @@ const selectStudyGroup = `select * from studygroup where id=? values(?)`;
 const updateStudyGroup = `update studygroups set name=? where id=?`;
 const deleteStudyGroupTable = "drop table studygroups";
 
+//LOGIN/REGISTER queries]
+
 export {
   createStudyGroupTable,
   insertMessageStudyGroup,
