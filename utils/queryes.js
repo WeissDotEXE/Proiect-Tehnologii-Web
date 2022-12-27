@@ -9,6 +9,7 @@ const updateStudyGroup = `update studygroups set name=? where id=?`;
 const deleteStudyGroupTable = "drop table studygroups";
 
 //LOGIN/REGISTER queries]
+const insertUserQuery = "insert into users(name,email)  values(?,?,?)";
 
 export {
   createStudyGroupTable,
