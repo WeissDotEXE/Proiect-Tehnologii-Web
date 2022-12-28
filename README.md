@@ -24,9 +24,13 @@ Notitele vor putea fi clasificate in functie de materie, data sau tag-uri. De as
 # Intructiuni pentru a rula partee de backend
 
 1. `cd .\backend\`
-2. `npm start`
+2. `npm install`
+3. `npm start`
    Server-ul va incepe sa ruleze pe portul 8080
 
 # Instructiuni pentru a rula partea de frontend
 
-1. `npm start` in folderul curent
+1. `npm install` in folderul curent
+2. `npm start` in folderul curent
+
+Pentru oprirea serverlor se foloseste CTRL+C
