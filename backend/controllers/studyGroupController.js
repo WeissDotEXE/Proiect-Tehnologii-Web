@@ -12,6 +12,7 @@ import {
   updateStudyGroupQuery,
   deleteStudyGroupTableQuery,
   deleteStudyGroupQuery,
+  insertUserQuery,
 } from "../utils/queryes.js";
 import sqlite3 from "sqlite3";
 
