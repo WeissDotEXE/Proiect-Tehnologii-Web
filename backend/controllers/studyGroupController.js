@@ -80,8 +80,8 @@ const deleteStudyGroup = async (req, res) => {
 };
 
 const insertMessage = async (req, res) => {
-  sql = insertMessageStudyGroupQuery;
   const { studyGroupId, userId, username, message } = req.body;
+  sql = insertMessageStudyGroupQuery;
   db.run(sql, [studyGroupId, userId, username, message], (err) => {
     if (err) {
       res.status(400).json({ status: "fail", message: err.message });
