@@ -11,6 +11,8 @@ import {
   selectStudyGroupQuery,
   updateStudyGroupQuery,
   deleteStudyGroupTableQuery,
+  deleteStudyGroupQuery,
+  insertUserQuery,
 } from "../utils/queryes.js";
 import sqlite3 from "sqlite3";
 
@@ -38,11 +40,25 @@ const getAllStudyGroups = (req, res) => {
 };
 
 const getStudyGroup = (req, res) => {
-  sql = selectStudyGroupQuery;
+  sql = selectStudyGroupQuery(id);
+  const id = req.params.id;
+  db.all(sql, [id], (err, row) => {
+    if (err) {
+      res.status(400).json({ status: "fail", message: "Something went wrong" });
+    }
+    res.status(200).json({ status: "succes", data: row });
+  });
 };
 
 const createStudyGroup = (req, res) => {
   sql = insertStudyGroupQuery;
+  const { name, description } = req.body;
+  db.run(sql, [name, description], (err) => {
+    if (err) {
+      res.status(400).json({ status: "fail", message: "Something went wrong" });
+    }
+    res.status(200).json({ status: "succes", data: { name, description } });
+  });
 };
 
 const updateStudyGroup = (req, res) => {
@@ -50,11 +66,30 @@ const updateStudyGroup = (req, res) => {
 };
 
 const deleteStudyGroup = (req, res) => {
-  sql = deleteStudyGroupQuery;
+  const { id } = req.params;
+  sql = deleteStudyGroup;
+  db.run(sql, [id], (err) => {
+    if (err) {
+      res.status(400).json({ status: "fail", message: "Something went wrong" });
+    }
+    res
+      .status(200)
+      .json({ status: "succes", message: "message inserted in studygroup" });
+  });
 };
 
 const insertMessage = (req, res) => {
   sql = insertMessageStudyGroupQuery;
+  const { id } = req.params;
+  const { message } = req.body;
+  db.run(sql, [message, id], (err) => {
+    if (err) {
+      res.status(400).json({ status: "fail", message: "Something went wrong" });
+    }
+    res
+      .status(200)
+      .json({ status: "succes", message: "message inserted in studygroup" });
+  });
 };
 
 export {
@@ -63,4 +98,5 @@ export {
   createStudyGroup,
   updateStudyGroup,
   deleteStudyGroup,
+  insertMessage,
 };
