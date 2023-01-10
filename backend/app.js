@@ -2,6 +2,10 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
+import {
+  createStudyGroupTableQuery,
+  deleteStudyGroupTableQuery,
+} from "./utils/queries.js";
 
 //connect to db
 const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
@@ -13,9 +17,9 @@ let sql;
 //!!!run once (we don't need to create multiple tables with same data)!!!
 
 // sql = `create table studygroups(id integer primary key,first_name,last_name,password,email)`;
-// db.run(sql);
+// db.run(createStudyGroupTableQuery);
 //drop table
-// db.run("drop table students");
+// db.run(deleteStudyGroupTableQuery);
 
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
