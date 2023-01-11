@@ -167,7 +167,7 @@ input:focus {
 }
 
 body {
-  background-image: linear-gradient(to bottom right, #00ffc2, #bd00ff);
+  /* background-image: linear-gradient(to bottom right, #00ffc2, #bd00ff) */
   width: auto;
   height: 70rem;
   background-repeat: no-repeat;

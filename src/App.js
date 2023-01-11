@@ -6,6 +6,7 @@ import TaskPage from "./pages/TaskPage/TaskPage";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import StudyGroupTask from "./components/StudyGroupTask/StudyGroupTask";
 function App() {
   return (
     <div>
@@ -13,7 +14,6 @@ function App() {
       <div>
         <Navbar />
         <RegisterForm />
-
         <Routes>
           <Route path="/studygroup" element={<StudyGroupPage />} />
           <Route path="/auth" element={<AuthPage />} />
