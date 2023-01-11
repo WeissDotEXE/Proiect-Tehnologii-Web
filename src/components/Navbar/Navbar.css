@@ -1,0 +1,45 @@
+.flex {
+  display: flex;
+  justify-content: flex-end;
+}
+.color {
+  background-color: #001253;
+  width: auto;
+  height: 3rem;
+}
+
+.btn {
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  color: #fd841f;
+  font-weight: bold;
+}
+.btn:hover {
+  background-color: red;
+  color: lightblue;
+}
+
+.margin {
+  margin-left: 1.5rem;
+}
+
+.text {
+  color: #fd841f;
+}
+
+.btn_imagine {
+  border: 0;
+  outline: none;
+  margin-right: 1rem;
+  width: 32px;
+  margin: 0.5rem 1rem 0 1rem;
+  background-image: url("../../icons/person-outline.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.logo {
+  height: 10px;
+  width: auto;
+}

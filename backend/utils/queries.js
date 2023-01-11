@@ -4,10 +4,14 @@ const createStudyGroupTableQuery =
 const insertStudyGroupQuery = `insert into studyGroups(name,description) values(?,?)`;
 
 const selectAllStudyGroupsQuery = `Select * from studygroups`;
-const selectStudyGroupQuery = `select * from studygroup where id=? values(?)`;
+const selectStudyGroupQuery = (id) => {
+  return `select * from studyGroups where id=${id}`;
+};
 const updateStudyGroupQuery = `update studygroups set name=?,description=? where id=?`;
 const deleteStudyGroupTableQuery = "drop table studygroups";
-const deleteStudyGroupQuery = "DELETE FROM studyGroups WHERE id=? values(?)";
+const deleteStudyGroupQuery = (id) => {
+  return `DELETE FROM studyGroups WHERE id=${id}`;
+};
 
 //Messages queries - create, insert,drop
 const createMessagesTableQuery =
