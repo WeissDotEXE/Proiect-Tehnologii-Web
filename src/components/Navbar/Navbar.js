@@ -13,7 +13,6 @@ const Navbar = ({ currentPage }) => {
     "items-center",
     "px-4"
   );
-  console.log(currentPage);
 
   const navbarLinks = [
     { path: "/notes", text: "Notes" },
