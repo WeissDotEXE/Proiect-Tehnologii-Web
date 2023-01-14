@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "CustomFont";
-  src: url("../../fonts/RolexLight.woff2");
+  src: url("../../assets/fonts/RolexLight.woff2");
 }
 
 .text-color {
@@ -91,10 +91,10 @@
 }
 
 .google {
-  background-image: url("../../icons/google.png");
+  background-image: url("../../assets/icons/google.png");
 }
 .facebook {
-  background-image: url("../../icons/facebook.png");
+  background-image: url("../../assets/icons/facebook.png");
 }
 
 input {
@@ -163,12 +163,5 @@ input:focus {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url("../../icons/google.png");
-}
-
-body {
-  /* background-image: linear-gradient(to bottom right, #00ffc2, #bd00ff); */
-  width: auto;
-  height: 70rem;
-  background-repeat: no-repeat;
+  background-image: url("../../assets/icons/google.png");
 }
