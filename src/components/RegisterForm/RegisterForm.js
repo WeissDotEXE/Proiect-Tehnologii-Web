@@ -59,4 +59,4 @@ const LoginForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
