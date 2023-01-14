@@ -6,11 +6,13 @@ import {
   createStudyGroup,
   updateStudyGroup,
   deleteStudyGroup,
+  insertMessage,
 } from "../controllers/studyGroupController.js";
 
 const router = express.Router();
 
 router.route("/").get(getAllStudyGroups).post(createStudyGroup);
+router.route("/insertmessage").post(insertMessage);
 router
   .route("/:id")
   .get(getStudyGroup)

@@ -1,17 +1,32 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
-import LoginForm from "./components/Loginform";
-import Navbar from "./components/Navbar";
-
+import { Routes, Route } from "react-router-dom";
+import StudyGroupPage from "./pages/StudyGroupPage/StudyGroupPage";
+import AuthPage from "./pages/AuthPage/AuthPage";
+import TaskPage from "./pages/TaskPage/TaskPage";
+import Navbar from "./components/Navbar/Navbar";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+import StudyGroupTask from "./components/StudyGroupTask/StudyGroupTask";
+import { useLocation } from "react-router-dom";
 function App() {
-  const location = useLocation();
+  const currentPage = useLocation();
+
   return (
     <div>
-      {location.pathname !== "/login" && <Navbar />}
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
+      {/* <Header /> */}
+      <div>
+        <Navbar currentPage={currentPage.pathname} />
+        {location.pathname !== "/login" && <Navbar />}
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/studygroup" element={<StudyGroupPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/taskpage" element={<TaskPage />} />
+          {/* <Route path="*" element={<Home />} /> */}
+        </Routes>
+      </div>
+      {/* <Footer /> */}
     </div>
   );
 }

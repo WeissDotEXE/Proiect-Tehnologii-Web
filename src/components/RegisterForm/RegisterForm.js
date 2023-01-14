@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./loginform.css";
+import "./registerform.css";
 
 const LoginForm = () => {
   const [popupStyle, showPopup] = useState("hide");
@@ -46,6 +46,9 @@ const LoginForm = () => {
           <div className="facebook"></div>
           <div className="google"></div>
         </div>
+        <p className="text-color align-center margin-bottom-2">
+          Dont have an account? Register here.
+        </p>
 
         <div className={popupStyle}>
           <h3>Login Failed</h3>
