@@ -5,11 +5,13 @@ import styles from "./StudyGroupPage.module.css";
 import StudyGroupTask from "../../components/StudyGroupTask/StudyGroupTask";
 
 const StudyGroupPage = () => {
-  const rootCls = cn(styles.StudyGroupPage);
+  const rootCls = cn(styles.StudyGroupPage, "w-full");
   return (
     <div className={rootCls}>
-      <h1>HEHEHEH</h1>
-      <StudyGroupTask id="id" name="testName" />
+      <StudyGroupTask id="id" name="Test Task" />
+      <StudyGroupTask id="id" name="Test Task" />
+      <StudyGroupTask id="id" name="Test Task" />
+      <StudyGroupTask id="id" name="Test Task" />
     </div>
   );
 };

@@ -7,13 +7,15 @@ import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import StudyGroupTask from "./components/StudyGroupTask/StudyGroupTask";
+import { useLocation } from "react-router-dom";
 function App() {
+  const currentPage = useLocation();
+
   return (
     <div>
       {/* <Header /> */}
       <div>
-        <Navbar />
-        <RegisterForm />
+        <Navbar currentPage={currentPage.pathname} />
         <Routes>
           <Route path="/studygroup" element={<StudyGroupPage />} />
           <Route path="/auth" element={<AuthPage />} />

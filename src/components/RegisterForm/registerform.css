@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   box-sizing: border-box;
   font-family: "CustomFont";
@@ -164,11 +164,11 @@ input:focus {
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("../../icons/google.png");
-}
+} */
 
 body {
   /* background-image: linear-gradient(to bottom right, #00ffc2, #bd00ff) */
-  width: auto;
+  /* width: auto;
   height: 70rem;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
