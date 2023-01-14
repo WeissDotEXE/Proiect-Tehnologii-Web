@@ -1,3 +1,4 @@
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import StudyGroupPage from "./pages/StudyGroupPage/StudyGroupPage";
@@ -16,7 +17,9 @@ function App() {
       {/* <Header /> */}
       <div>
         <Navbar currentPage={currentPage.pathname} />
+        {location.pathname !== "/login" && <Navbar />}
         <Routes>
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/studygroup" element={<StudyGroupPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/taskpage" element={<TaskPage />} />
