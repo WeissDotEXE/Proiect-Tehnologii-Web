@@ -9,6 +9,8 @@ import RegisterForm from "./components/RegisterForm/RegisterForm";
 import CreateStudyGroup from "./pages/CreateStudyGroup/CreateStudyGroup";
 import StudyGroupMessage from "./pages/StudyGroupMessage/StudyGroupMessage";
 import { useLocation } from "react-router-dom";
+import NotePage from "./pages/NotePage/NotePage";
+import Note from "./components/Note/Note";
 function App() {
   const currentPage = useLocation();
 
@@ -29,6 +31,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/taskpage" element={<TaskPage />} />
           <Route path="/createstudygroup" element={<CreateStudyGroup />} />
+          <Route path="/notes/:userID" element={<NotePage />} />
           {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </div>
