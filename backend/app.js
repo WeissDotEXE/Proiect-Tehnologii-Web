@@ -11,7 +11,12 @@ import {
   createNotesTableQuery,
   dropTasksTableQuery,
   createTasksTableQuery,
+  createCredentialsTable,
+  deleteCredentialsTableQuery,
+  createMessagesTableQuery,
+  deleteMessageTableQuery,
 } from "./utils/queries.js";
+import cors from "cors";
 
 //connect to db
 const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
@@ -28,6 +33,9 @@ let sql;
 // db.run(deleteStudyGroupTableQuery);
 db.run(createNotesTableQuery);
 db.run(createTasksTableQuery);
+db.run(createCredentialsTable);
+db.run(createStudyGroupTableQuery);
+db.run(createMessagesTableQuery);
 
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
@@ -46,6 +54,7 @@ db.run(createTasksTableQuery);
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
