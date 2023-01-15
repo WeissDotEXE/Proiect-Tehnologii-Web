@@ -1,68 +1,56 @@
 import React, { useEffect, useState } from "react";
 import "./loginform.css";
 import axios from "axios";
+import Input from "../Input/Input";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
-  const onFinish = (values) => {
-    const { username, password } = values;
-    axios
-      .post("http//http://localhost:3000/validatepass", { username, password })
-      .then((res) => {
-        if (res.data.validation) {
-          alert("merge");
-        } else {
-          alert("parola gresita");
-        }
-      });
-  };
-
-  const [popupStyle, showPopup] = useState("hide");
-
-  const popup = () => {
-    showPopup("login-popup");
-    setTimeout(() => showPopup("hide"), 3000);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const onFinish = async (e) => {
+    e.preventDefault();
+    console.log(username, password);
+    if (username === "" || password === "") return;
+    const response = await axios.get(
+      `http://localhost:8000/api/v1/auth/login`,
+      {
+        username,
+        password,
+      }
+    );
+    console.log(response);
   };
 
   return (
-    <div>
+    <form onSubmit={onFinish}>
       <div className="cover">
         <h1 className="align-center text-color margin-top-2">Login</h1>
-        <input
-          className="align-center margin-top-2"
-          type="text"
-          placeholder="username"
-        />
-        <input
-          className="align-center margin-top-2"
-          type="password"
-          placeholder="password"
+
+        <Input
+          value={username}
+          placeholder="Type username"
+          onChange={(e) => setUsername(e.target.value)}
         />
 
-        <div className=" login-btn align-center" onClick={popup}>
+        <Input
+          value={password}
+          placeholder="Type password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className=" login-btn align-center">
           Login
-        </div>
-        <div className="text-color flex remember-me">
-          <label htmlFor="subscribeNews ">Remember me</label>
-          <input
-            className="position"
-            type="checkbox"
-            id="subscribeNews"
-            name="subscribe"
-            value="newsletter"
-          />
-        </div>
+        </button>
 
         <div className="alt-login margin-auto margin-top-2"></div>
         <p className="text-color align-center margin-bottom-2">
-          Dont have an account? Register here.
+          Dont have an account?
+          <Link to="/register">
+            <button>Register here</button>
+          </Link>
         </p>
-
-        <div className={popupStyle}>
-          <h3>Login Failed</h3>
-          <p>Username or password incorrect</p>
-        </div>
       </div>
-    </div>
+    </form>
   );
 };
 

@@ -16,17 +16,18 @@ function App() {
     <div>
       {/* <Header /> */}
       <div>
-        {currentPage.pathname !== "/login" && (
-          <Navbar currentPage={currentPage.pathname} />
-        )}
+        {currentPage.pathname !== "/login" &&
+          currentPage.pathname !== "/register" && (
+            <Navbar currentPage={currentPage.pathname} />
+          )}
         <Routes>
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
           <Route path="/studygroup" element={<StudyGroupPage />} />
           <Route
             path="/studygroup/:groupId/:groupName"
             element={<StudyGroupMessage />}
           />
-          <Route path="/auth" element={<AuthPage />} />
           <Route path="/taskpage" element={<TaskPage />} />
           <Route path="/createstudygroup" element={<CreateStudyGroup />} />
           {/* <Route path="*" element={<Home />} /> */}
