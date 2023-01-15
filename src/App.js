@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import StudyGroupPage from "./pages/StudyGroupPage/StudyGroupPage";
+import AuthPage from "./pages/AuthPage/AuthPage";
+import TaskPage from "./pages/TaskPage/TaskPage";
+import Navbar from "./components/Navbar/Navbar";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+import CreateStudyGroup from "./pages/CreateStudyGroup/CreateStudyGroup";
+import StudyGroupMessage from "./pages/StudyGroupMessage/StudyGroupMessage";
+import { useLocation } from "react-router-dom";
 function App() {
+  const currentPage = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Header /> */}
+      <div>
+        {currentPage.pathname !== "/login" &&
+          currentPage.pathname !== "/register" && (
+            <Navbar currentPage={currentPage.pathname} />
+          )}
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/studygroup" element={<StudyGroupPage />} />
+          <Route
+            path="/studygroup/:groupId/:groupName"
+            element={<StudyGroupMessage />}
+          />
+          <Route path="/taskpage" element={<TaskPage />} />
+          <Route path="/createstudygroup" element={<CreateStudyGroup />} />
+          {/* <Route path="*" element={<Home />} /> */}
+        </Routes>
+      </div>
+      {/* <Footer /> */}
     </div>
   );
 }
-
 export default App;

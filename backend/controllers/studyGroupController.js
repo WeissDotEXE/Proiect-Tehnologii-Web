@@ -4,16 +4,17 @@
 //   updateStudyGroup,
 //   deleteStudyGroup,
 import {
-  createStudyGroupTableQuery,
-  insertMessageStudyGroupQuery,
   insertStudyGroupQuery,
   selectAllStudyGroupsQuery,
   selectStudyGroupQuery,
   updateStudyGroupQuery,
   deleteStudyGroupTableQuery,
   deleteStudyGroupQuery,
-  insertUserQuery,
-} from "../utils/queryes.js";
+  createMessagesTableQuery,
+  insertMessageStudyGroupQuery,
+  selectMessagesStudyGroupQuery,
+  deleteMessageTableQuery,
+} from "../utils/queries.js";
 import sqlite3 from "sqlite3";
 
 let sql;
@@ -21,75 +22,91 @@ const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
   if (err) return console.log(err.message);
 });
 
-const getAllStudyGroups = (req, res) => {
-  sql = selectAllStudyGroupsQuery;
-  let studygroupList = [];
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.log(err);
-      res
-        .status(400)
-        .json({ status: "fail", message: "something went wrong!" });
-    }
-    rows.forEach((row) => {
-      studygroupList.push(row);
-      console.log(row);
+//success
+const getAllStudyGroups = async (req, res, next) => {
+  try {
+    sql = selectAllStudyGroupsQuery;
+    db.all(sql, [], (err, rows) => {
+      if (err)
+        return res.status(400).json({ status: "fail", message: err.message });
+      res.status(200).json({ status: "succes", data: rows });
     });
-    res.status(200).json({ status: "succes", data: studygroupList });
-  });
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error });
+  }
 };
 
-const getStudyGroup = (req, res) => {
+//success
+const getStudyGroup = async (req, res) => {
+  const { id } = req.params;
   sql = selectStudyGroupQuery(id);
-  const id = req.params.id;
-  db.all(sql, [id], (err, row) => {
+  db.get(sql, (err, row) => {
     if (err) {
-      res.status(400).json({ status: "fail", message: "Something went wrong" });
+      res.status(400).json({ status: "fail", message: err.message });
     }
     res.status(200).json({ status: "succes", data: row });
   });
 };
 
-const createStudyGroup = (req, res) => {
+//success
+const createStudyGroup = async (req, res) => {
   sql = insertStudyGroupQuery;
   const { name, description } = req.body;
-  db.run(sql, [name, description], (err) => {
+  db.run(sql, [name, description], (err, row) => {
     if (err) {
-      res.status(400).json({ status: "fail", message: "Something went wrong" });
+      res
+        .status(400)
+        .json({ status: "fail", code: err.code, message: err.message });
     }
-    res.status(200).json({ status: "succes", data: { name, description } });
+    res.status(200).json({ status: "succes", data: row });
   });
 };
 
-const updateStudyGroup = (req, res) => {
+const updateStudyGroup = async (req, res) => {
   sql = updateStudyGroupQuery;
 };
 
-const deleteStudyGroup = (req, res) => {
+//success
+const deleteStudyGroup = async (req, res) => {
   const { id } = req.params;
-  sql = deleteStudyGroup;
-  db.run(sql, [id], (err) => {
+  sql = deleteStudyGroupQuery(id);
+  db.run(sql, (err) => {
     if (err) {
-      res.status(400).json({ status: "fail", message: "Something went wrong" });
+      res.status(400).json({ status: "fail", message: err.message });
     }
     res
-      .status(200)
-      .json({ status: "succes", message: "message inserted in studygroup" });
+      .status(204)
+      .json({ status: "succes", message: "Study group has been deleted" });
   });
 };
 
-const insertMessage = (req, res) => {
+const insertMessage = async (req, res) => {
+  const { userId, username, message } = req.body;
+  const { groupId } = req.params;
   sql = insertMessageStudyGroupQuery;
-  const { id } = req.params;
-  const { message } = req.body;
-  db.run(sql, [message, id], (err) => {
+  db.run(sql, [parseInt(groupId), userId, username, message], (err) => {
     if (err) {
-      res.status(400).json({ status: "fail", message: "Something went wrong" });
+      res.status(400).json({ status: "fail", message: err.message });
     }
-    res
-      .status(200)
-      .json({ status: "succes", message: "message inserted in studygroup" });
+    res.status(200).json({
+      status: "succes",
+      message: `message inserted in studygroup ${groupId}`,
+    });
   });
+};
+
+const getMessages = async (req, res) => {
+  try {
+    const { groupId } = req.params;
+    sql = selectMessagesStudyGroupQuery(groupId);
+    db.all(sql, [], (err, rows) => {
+      if (err)
+        return res.status(400).json({ status: "fail", message: err.message });
+      res.status(200).json({ status: "succes", data: rows });
+    });
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error });
+  }
 };
 
 export {
@@ -99,4 +116,5 @@ export {
   updateStudyGroup,
   deleteStudyGroup,
   insertMessage,
+  getMessages,
 };
