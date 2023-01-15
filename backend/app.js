@@ -2,9 +2,15 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
+import noteRouter from "./routes/noteRouter.js";
+import taskRouter from "./routes/taskRouter.js";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
+  dropNotesTableQuery,
+  createNotesTableQuery,
+  dropTasksTableQuery,
+  createTasksTableQuery,
 } from "./utils/queries.js";
 
 //connect to db
@@ -20,6 +26,8 @@ let sql;
 // db.run(createStudyGroupTableQuery);
 //drop table
 // db.run(deleteStudyGroupTableQuery);
+db.run(createNotesTableQuery);
+db.run(createTasksTableQuery);
 
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
@@ -42,5 +50,7 @@ app.use(express.json());
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/note", noteRouter);
+app.use("/api/v1/task", taskRouter);
 
 export default app;
