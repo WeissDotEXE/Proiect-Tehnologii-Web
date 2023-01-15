@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./loginform.css";
+import axios from "axios";
 
 const LoginForm = () => {
+  const onFinish = (values) => {
+    const { username, password } = values;
+    axios
+      .post("http//http://localhost:3000/validatepass", { username, password })
+      .then((res) => {
+        if (res.data.validation) {
+          alert("merge");
+        } else {
+          alert("parola gresita");
+        }
+      });
+  };
+
   const [popupStyle, showPopup] = useState("hide");
 
   const popup = () => {
@@ -38,14 +52,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <p className="text align-center text-color margin-top-2">
-          Or login using
-        </p>
-
-        <div className="alt-login margin-auto margin-top-2">
-          <div className="facebook"></div>
-          <div className="google"></div>
-        </div>
+        <div className="alt-login margin-auto margin-top-2"></div>
         <p className="text-color align-center margin-bottom-2">
           Dont have an account? Register here.
         </p>
