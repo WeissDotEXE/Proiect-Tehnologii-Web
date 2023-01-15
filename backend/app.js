@@ -6,6 +6,7 @@ import cors from "cors";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
+  createMessagesTableQuery,
 } from "./utils/queries.js";
 
 //connect to db
@@ -14,13 +15,8 @@ const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
 });
 let sql;
 
-//create table
-//!!!run once (we don't need to create multiple tables with same data)!!!
-
-// sql = `create table studygroups(id integer primary key,first_name,last_name,password,email)`;
-// db.run(createStudyGroupTableQuery);
-//drop table
-// db.run(deleteStudyGroupTableQuery);
+db.run(createStudyGroupTableQuery);
+db.run(createMessagesTableQuery);
 
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;

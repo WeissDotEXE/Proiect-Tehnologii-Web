@@ -41,9 +41,20 @@ const StudyGroupPage = () => {
         </div>
       ) : (
         <div>
+          <div className="flex justify-center items-center my-6">
+            <Link to="/createstudygroup">
+              <button className="bg-green-400 p-5 rounded-lg hover:drop-shadow-xl duration-300">
+                Create study group
+              </button>
+            </Link>
+          </div>
           {studyGroups.map((item, index) => {
             return (
-              <Link key={index} className={studyGroupItemClass}>
+              <Link
+                to={`/studygroup/${item.id}/${item.name}`}
+                key={index}
+                className={studyGroupItemClass}
+              >
                 <div className="flex w-full justify-between">
                   <h1>{item.name}</h1>
                   <h1>{item.description}</h1>

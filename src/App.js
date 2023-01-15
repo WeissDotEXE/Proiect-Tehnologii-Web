@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import CreateStudyGroup from "./pages/CreateStudyGroup/CreateStudyGroup";
+import StudyGroupMessage from "./pages/StudyGroupMessage/StudyGroupMessage";
 import { useLocation } from "react-router-dom";
 function App() {
   const currentPage = useLocation();
@@ -21,6 +22,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/studygroup" element={<StudyGroupPage />} />
+          <Route
+            path="/studygroup/:groupId/:groupName"
+            element={<StudyGroupMessage />}
+          />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/taskpage" element={<TaskPage />} />
           <Route path="/createstudygroup" element={<CreateStudyGroup />} />

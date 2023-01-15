@@ -12,6 +12,7 @@ import {
   deleteStudyGroupQuery,
   createMessagesTableQuery,
   insertMessageStudyGroupQuery,
+  selectMessagesStudyGroupQuery,
   deleteMessageTableQuery,
 } from "../utils/queries.js";
 import sqlite3 from "sqlite3";
@@ -80,17 +81,32 @@ const deleteStudyGroup = async (req, res) => {
 };
 
 const insertMessage = async (req, res) => {
-  const { studyGroupId, userId, username, message } = req.body;
+  const { userId, username, message } = req.body;
+  const { groupId } = req.params;
   sql = insertMessageStudyGroupQuery;
-  db.run(sql, [studyGroupId, userId, username, message], (err) => {
+  db.run(sql, [parseInt(groupId), userId, username, message], (err) => {
     if (err) {
       res.status(400).json({ status: "fail", message: err.message });
     }
     res.status(200).json({
       status: "succes",
-      message: `message inserted in studygroup ${studyGroupId}`,
+      message: `message inserted in studygroup ${groupId}`,
     });
   });
+};
+
+const getMessages = async (req, res) => {
+  try {
+    const { groupId } = req.params;
+    sql = selectMessagesStudyGroupQuery(groupId);
+    db.all(sql, [], (err, rows) => {
+      if (err)
+        return res.status(400).json({ status: "fail", message: err.message });
+      res.status(200).json({ status: "succes", data: rows });
+    });
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error });
+  }
 };
 
 export {
@@ -100,4 +116,5 @@ export {
   updateStudyGroup,
   deleteStudyGroup,
   insertMessage,
+  getMessages,
 };
