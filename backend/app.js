@@ -7,6 +7,7 @@ import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
   createMessagesTableQuery,
+  deleteMessageTableQuery,
 } from "./utils/queries.js";
 
 //connect to db

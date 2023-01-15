@@ -1,3 +1,6 @@
+// !!!!!!!!!!de schimbat username si userId
+//liniile 49-50
+
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./StudyGroupMessage.module.css";
@@ -84,7 +87,7 @@ const StudyGroupMessage = () => {
         />
         <button
           type="submit"
-          className="absolute right-16 top-5 bg-green-500 p-4 rounded-lg"
+          className="absolute right-24 top-5 bg-green-500 p-4 rounded-lg"
         >
           Send
         </button>

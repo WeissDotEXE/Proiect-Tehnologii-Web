@@ -4,11 +4,13 @@ import styles from "./CreateStudyGroup.module.css";
 import cn from "classnames";
 import Input from "../../components/Input/Input";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateStudyGroup = () => {
   const [groupName, setGroupName] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const rootCls = cn(
     "flex",
@@ -42,6 +44,11 @@ const CreateStudyGroup = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    if (groupName === "" || description === "") {
+      console.log("NU i complet");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8000/api/v1/studygroup",
@@ -52,6 +59,7 @@ const CreateStudyGroup = () => {
       );
 
       console.log(response);
+      navigate("/studygroup");
     } catch (error) {
       if (error.response) console.log(error.response.data);
     }
