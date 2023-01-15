@@ -2,15 +2,21 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
-import cors from "cors";
+import noteRouter from "./routes/noteRouter.js";
+import taskRouter from "./routes/taskRouter.js";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
+  dropNotesTableQuery,
+  createNotesTableQuery,
+  dropTasksTableQuery,
+  createTasksTableQuery,
   createCredentialsTable,
   deleteCredentialsTableQuery,
   createMessagesTableQuery,
   deleteMessageTableQuery,
 } from "./utils/queries.js";
+import cors from "cors";
 
 //connect to db
 const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
@@ -25,6 +31,8 @@ let sql;
 // db.run(createStudyGroupTableQuery);
 //drop table
 // db.run(deleteStudyGroupTableQuery);
+db.run(createNotesTableQuery);
+db.run(createTasksTableQuery);
 db.run(createCredentialsTable);
 db.run(createStudyGroupTableQuery);
 db.run(createMessagesTableQuery);
@@ -51,5 +59,7 @@ app.use(cors());
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/note", noteRouter);
+app.use("/api/v1/task", taskRouter);
 
 export default app;
