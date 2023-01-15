@@ -46,10 +46,11 @@ const CreateStudyGroup = () => {
       const response = await axios.post(
         "http://localhost:8000/api/v1/studygroup",
         {
-          title: groupName,
+          name: groupName,
           description,
         }
       );
+
       console.log(response);
     } catch (error) {
       if (error.response) console.log(error.response.data);

@@ -28,7 +28,7 @@ const getAllStudyGroups = async (req, res, next) => {
     db.all(sql, [], (err, rows) => {
       if (err)
         return res.status(400).json({ status: "fail", message: err.message });
-      res.status(400).json({ status: "succes", data: rows });
+      res.status(200).json({ status: "succes", data: rows });
     });
   } catch (error) {
     res.status(400).json({ status: "fail", message: error });

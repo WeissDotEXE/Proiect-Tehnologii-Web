@@ -15,7 +15,9 @@ function App() {
     <div>
       {/* <Header /> */}
       <div>
-        {currentPage.pathname !== "/login" && <Navbar />}
+        {currentPage.pathname !== "/login" && (
+          <Navbar currentPage={currentPage.pathname} />
+        )}
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/studygroup" element={<StudyGroupPage />} />

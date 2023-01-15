@@ -2,6 +2,7 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
+import cors from "cors";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
@@ -38,6 +39,7 @@ let sql;
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
