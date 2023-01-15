@@ -24,10 +24,26 @@ const selectMessagesStudyGroupQuery = (id) => {
 };
 const deleteMessageTableQuery = "drop table groupMessages";
 
+//Create, insert, drop, ---FOR LOGIN
+const createCredentialsTable =
+  "create table if not exists credentials(id integer primary key,username,password )";
+const deleteCredentialsTableQuery = "drop table credentials";
+//Adauga date in baza de date
+const insertCredential =
+  "INSERT INTO credentials(username, password) VALUES (?,?)";
+
 //LOGIN/REGISTER queries]
-const insertUserQuery = "insert into users(name,email)  values(?,?,?)";
+const getUsersQuery = "select * from credentials";
+// const insertUserQuery = "insert into users(name,email)  values(?,?,?)";
+const selectAllCredidentials = `SELECT * FROM CREDITENTIALS`;
+const validatePassQuery = (username, password) => {
+  return `select * from credentials where username like '${username}' and password like '${password}'`;
+};
 
 export {
+  insertCredential,
+  createCredentialsTable,
+  validatePassQuery,
   createStudyGroupTableQuery,
   insertStudyGroupQuery,
   selectAllStudyGroupsQuery,
@@ -39,5 +55,6 @@ export {
   insertMessageStudyGroupQuery,
   selectMessagesStudyGroupQuery,
   deleteMessageTableQuery,
-  insertUserQuery,
+  getUsersQuery,
+  deleteCredentialsTableQuery,
 };
