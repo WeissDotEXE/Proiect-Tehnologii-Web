@@ -40,7 +40,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className=" login-btn align-center">
-          Login
+          Register
         </button>
 
         <div className="alt-login margin-auto margin-top-2"></div>
