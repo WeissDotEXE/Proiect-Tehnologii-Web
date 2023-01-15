@@ -5,7 +5,10 @@ import sqlite3 from "sqlite3";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
+  createCredentialsTable,
+  deleteCredentialsTableQuery,
 } from "./utils/queries.js";
+import cors from "cors";
 
 //connect to db
 const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
@@ -20,7 +23,7 @@ let sql;
 // db.run(createStudyGroupTableQuery);
 //drop table
 // db.run(deleteStudyGroupTableQuery);
-
+db.run(createCredentialsTable);
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
 // db.run(sql, ["mike", "michaelSOn", "pass", "email@gmail.com"], (err) => {
@@ -38,7 +41,7 @@ let sql;
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
 app.use("/api/v1/auth", authRouter);
