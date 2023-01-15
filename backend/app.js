@@ -2,11 +2,14 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
+import cors from "cors";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
   createCredentialsTable,
   deleteCredentialsTableQuery,
+  createMessagesTableQuery,
+  deleteMessageTableQuery,
 } from "./utils/queries.js";
 import cors from "cors";
 
@@ -24,6 +27,9 @@ let sql;
 //drop table
 // db.run(deleteStudyGroupTableQuery);
 db.run(createCredentialsTable);
+db.run(createStudyGroupTableQuery);
+db.run(createMessagesTableQuery);
+
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
 // db.run(sql, ["mike", "michaelSOn", "pass", "email@gmail.com"], (err) => {
@@ -42,6 +48,7 @@ db.run(createCredentialsTable);
 const app = express();
 app.use(express.json());
 app.use(cors());
+
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
 app.use("/api/v1/auth", authRouter);
