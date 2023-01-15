@@ -33,8 +33,17 @@ const registerUser = (req, res) => {
         .status(400)
         .json({ status: "fail", code: err.code, message: err.message });
     }
-    res.status(200).json({ status: "succes", data: row });
   });
+
+  db.get(
+    `select * from credentials where username='${username}'`,
+    (err, row) => {
+      if (err) {
+        res.status(400).json({ status: "fail", message: err.message });
+      }
+      res.status(200).json({ status: "successs", data: row });
+    }
+  );
 };
 
 const loginUser = async (req, res) => {
