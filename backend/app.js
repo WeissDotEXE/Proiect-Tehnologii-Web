@@ -2,9 +2,12 @@ import express from "express";
 import studyGroupRouter from "./routes/studyGroupsRoutes.js";
 import authRouter from "./routes/authRouter.js";
 import sqlite3 from "sqlite3";
+import cors from "cors";
 import {
   createStudyGroupTableQuery,
   deleteStudyGroupTableQuery,
+  createMessagesTableQuery,
+  deleteMessageTableQuery,
 } from "./utils/queries.js";
 
 //connect to db
@@ -13,13 +16,8 @@ const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {
 });
 let sql;
 
-//create table
-//!!!run once (we don't need to create multiple tables with same data)!!!
-
-// sql = `create table studygroups(id integer primary key,first_name,last_name,password,email)`;
-// db.run(createStudyGroupTableQuery);
-//drop table
-// db.run(deleteStudyGroupTableQuery);
+db.run(createStudyGroupTableQuery);
+db.run(createMessagesTableQuery);
 
 //insert data into table
 // sql = `insert into students(first_name,last_name,password,email) VALUES(?,?,?,?)`;
@@ -38,6 +36,7 @@ let sql;
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/api/v1/studygroup", studyGroupRouter);
