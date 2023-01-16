@@ -52,7 +52,7 @@ const deleteNotesQuery = (id) => {
 };
 const dropNotesTableQuery = "drop table notes";
 const selectNotesQuery = (id) => {
-  return `SELECT FROM notes WHERE id=${id}`;
+  return `SELECT * FROM notes WHERE id=${id}`;
 };
 const selectAllNotesQuery = `SELECT * FROM notes `;
 

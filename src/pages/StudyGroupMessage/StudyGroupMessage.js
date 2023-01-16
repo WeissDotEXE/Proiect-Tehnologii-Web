@@ -47,7 +47,7 @@ const StudyGroupMessage = () => {
         `http://localhost:8000/api/v1/studygroup/messages/${groupId}`,
         {
           userId: 1,
-          username: "UserTest",
+          username: localStorage.getItem("username"),
           message,
         }
       );

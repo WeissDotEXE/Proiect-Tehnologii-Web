@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./NotePage.module.css";
 import cn from "classnames";
@@ -12,9 +12,15 @@ const NotePage = () => {
   const [notesList, setNotesList] = useState([]);
 
   const getNotesHandler = useCallback(async () => {
-    const response = await axios.get("");
+    const response = await axios.get("http://localhost:8000/api/v1/note");
+
+    setNotesList(response.data.data);
+    console.log(response.data.data);
   }, []);
 
+  useEffect(() => {
+    getNotesHandler();
+  }, []);
   return (
     <div className={rootCls}>
       <div className="flex justify-center items-center my-8">

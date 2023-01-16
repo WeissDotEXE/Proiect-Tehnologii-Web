@@ -1,12 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './NoteContent.module.css';
+import React, { useCallback, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import styles from "./NoteContent.module.css";
+import axios from "axios";
+import { useParams } from "react-router";
 
-const NoteContent = () => (
-  <div className={styles.NoteContent}>
-    NoteContent Component
-  </div>
-);
+const NoteContent = () => {
+  const { id } = useParams();
+
+  const [data, setData] = useState();
+
+  const getDataHandler = useCallback(async () => {
+    const response = await axios.get(`http://localhost:8000/api/v1/note/${id}`);
+    console.log(response.data.data.name);
+    setData(response.data.data);
+  }, []);
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  return (
+    <div className={styles.NoteContent}>
+      <div className="my-10">{data && data.name}</div>
+      <div>{data && data.content}</div>
+    </div>
+  );
+};
 
 NoteContent.propTypes = {};
 
