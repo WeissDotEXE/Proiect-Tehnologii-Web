@@ -60,9 +60,10 @@ const deleteNote = async (req, res) => {
 const updateNote = async (req, res) => {
   const { id } = req.params;
 
+  const { name, content, subject } = req.body;
   try {
     sql = updateNotesQuery(id);
-    db.run(sql, (err) => {
+    db.run(sql, [name, content, subject], (err) => {
       if (err) res.status(400).json({ status: "fail", message: err.message });
       res
         .status(204)

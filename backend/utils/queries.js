@@ -45,7 +45,7 @@ const validatePassQuery = (username, password) => {
 const createNotesTableQuery =
   "create table if not exists notes(id integer primary key, name, content, subject, userID)";
 const insertNotesQuery =
-  "insert into notes(name, content, subject) values(?,?,?,?)";
+  "insert into notes(name, content, subject,userID) values(?,?,?,?)";
 const updateNotesQuery = "update notes set name=?, content=?, subject=?";
 const deleteNotesQuery = (id) => {
   return `DELETE FROM notes WHERE id=${id}`;
